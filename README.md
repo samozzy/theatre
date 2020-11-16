@@ -1,2 +1,1 @@
-# theatre
-Theatre Portfolio for Sam Osborne
+# Theatre Portfolio for Sam Osborne
