@@ -10,16 +10,44 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
 
-    <title>{{ page.title }}</title>
+    <title>{{ page.title | default: site.title }}</title>
   </head>
   <body>
     <div class="container-fluid">
-		<div class="row">
-			<div class="col-12 col-md-8 offset-md-2">
-				{{ content | markdownify }}
-			</div>
-		</div>
-	</div>
+      <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+          {{ content | markdownify }}
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      {% assign projects_by_category = site.data.projects | group_by: "category" | sort: "date" %}
+      {% for category in projects_by_category %}
+        <div class='row {% cycle "bg-info", "bg-primary" %}'>
+          <div class="col-12">
+            <h3 class="text-center category-title fs-2">{{ category.name }}</h3>
+          </div>
+          {% for project in category.items %}
+            {% if project.company and project.company != empty %}{% assign has_company = true %}{% else %}{% assign has_company = false %}{% endif %}
+            {% if project.venue and project.venue != empty %}{% assign has_venue = true %}{% else %}{% assign has_venue = false %}{% endif %}
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card mb-4 shadow-sm">
+                <div class="card-body m-0 p-0">
+                  <img src="http://placekitten.com/160/90" width="100%" height="auto" class="rounded-top">
+                </div>
+                <div class="card-footer">
+                  <p class="lead">{{ project.title }} 
+                    {% if has_company or has_venue %}({{ project.company }}{% if has_company and has_venue and project.venue != project.company%}, {% endif %}{% if has_venue and project.venue != project.company %}{{ project.venue }}{% endif %}){% endif %}
+
+                    <br>{{ project.role }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
