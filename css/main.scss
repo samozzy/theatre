@@ -9,6 +9,10 @@
     padding: 1rem 0;
 }
 
+.card-body p {
+    margin-bottom: 0;
+}
+
 
 /*!
  // Comment out the ones you're not using to save on render size and time 
@@ -25,6 +29,57 @@
 @import "bootstrap/maps";
 @import "bootstrap/mixins";
 @import "bootstrap/utilities";
+
+.hero-image {
+    background-repeat: no-repeat;
+    background-color: #090B0A;
+    box-shadow: inset 0 0 100px black; 
+    background-size: cover;
+    background-position: -25vw 15%;
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: linear-gradient(150deg, transparent 50%, #090B0A 95%);
+        mix-blend-mode: soft-light;
+        @include media-breakpoint-up(lg) {
+            background: linear-gradient(90deg, transparent 20%, #090B0A 80%);
+            mix-blend-mode: luminosity;
+        }
+        @include media-breakpoint-up(xl){
+            mix-blend-mode: color-burn;
+        }
+        // lower: something else 
+    }
+    .words {
+        @extend .h1;
+        line-height: 2 !important;
+        letter-spacing: 1px !important;
+        strong {
+            font-size: 4rem;
+        }
+        em {
+            @extend .fs-2;
+        }
+
+        z-index: 90;
+        background: linear-gradient(135deg, #3F7997, white);
+        @include media-breakpoint-up(lg){
+            background: linear-gradient(45deg, #3F7997 40%, white);
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+        -webkit-text-fill-color: transparent;
+    }
+}
 
 // Layout & components
 @import "bootstrap/root";

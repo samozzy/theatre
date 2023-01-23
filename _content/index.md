@@ -3,9 +3,12 @@ layout: default
 permalink: / 
 ---
 
-<h1 class="display-1 fw-bold text-center">Sam Osborne</h1>
+**Sam Osborne**
 
-# Lighting Designer & Programmer for theatre, dance, and music
+Production Manager<br>
+Lighting Designer<br>
+Sound Designer<br>
+QLab wrangler<br>
+_and much more_
 
-## _Also sound, QLab, AV, and systems control_
-
+For Theatre, Dance, and Music

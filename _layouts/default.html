@@ -14,8 +14,8 @@
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 col-md-8 offset-md-2">
+      <div class="row vh-100 hero-image" style="background-image:url({% link static/img/the-effect.jpg %});">
+        <div class="col-12 col-md-10 col-lg-9 col-xl-8 mt-5 pt-5 mx-auto mx-lg-1 ms-lg-auto text-center text-lg-end text-light words">
           {{ content | markdownify }}
         </div>
       </div>
@@ -23,19 +23,19 @@
     <div class="container-fluid">
       {% assign projects_by_category = site.data.projects | group_by: "category" | sort: "date" %}
       {% for category in projects_by_category %}
-        <div class='row {% cycle "bg-info", "bg-primary" %}'>
+        <div class='row {% cycle "bg-info", "bg-primary" %} g-4 pb-5 {% if forloop.index == 1 %}pt-4{% endif %}'>
           <div class="col-12">
-            <h3 class="text-center category-title fs-2">{{ category.name }}</h3>
+            <h3 class="text-center category-title fs-2 mb-0">{{ category.name }}</h3>
           </div>
           {% for project in category.items %}
             {% if project.company and project.company != empty %}{% assign has_company = true %}{% else %}{% assign has_company = false %}{% endif %}
             {% if project.venue and project.venue != empty %}{% assign has_venue = true %}{% else %}{% assign has_venue = false %}{% endif %}
             <div class="col-12 col-md-6 col-lg-4">
-              <div class="card mb-4 shadow-sm">
-                <div class="card-body m-0 p-0">
-                  <img src="http://placekitten.com/160/90" width="100%" height="auto" class="rounded-top">
+              <div class="card shadow-sm h-100 rounded-0">
+                <div class="card-header m-0 p-0">
+                  <img src="http://placekitten.com/320/180" width="100%" height="auto">
                 </div>
-                <div class="card-footer">
+                <div class="card-body">
                   <p class="lead">{{ project.title }} 
                     {% if has_company or has_venue %}({{ project.company }}{% if has_company and has_venue and project.venue != project.company%}, {% endif %}{% if has_venue and project.venue != project.company %}{{ project.venue }}{% endif %}){% endif %}
 
